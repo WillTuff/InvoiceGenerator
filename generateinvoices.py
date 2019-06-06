@@ -11,7 +11,7 @@ sortCode = '000000'
 client = Client('Client Company')
 provider = Provider('Totness Web Services', bank_account=accNumber, bank_code=sortCode)
 creator = Creator('')
-# address = Address('Totness Web Solutions', address = '4 Broadway, Guiseley')
+# address = Address('Acme Solutions', address = 'The Hague, Netherlands')
 
 Quantity = raw_input("Please enter a quantity of good provided: ")
 Price = raw_input("Please enter the total price: ")
