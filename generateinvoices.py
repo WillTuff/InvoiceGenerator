@@ -12,22 +12,28 @@ client = Client('The Inside Story')
 provider = Provider('Totness Web Services, 4 Broadway, Guiseley, Leeds', 
     bank_account=accNumber, bank_code=sortCode)
 creator = Creator('')
-# address = Address('Acme Solutions', address = 'The Hague, Netherlands')
+address = Address('Acme Solutions', address = 'The Hague, Netherlands')
 
-Quantity = raw_input("Please enter a quantity of good provided: ")
-Price = raw_input("Please enter the total price: ")
-Description = raw_input("Please enter a description: ")
+#inputs
+itemQuantity = input("How many items would you like to add? ")
 
 def GenerateInvoice():
+    i, x = 0, 1
     invoice = Invoice(client, provider, creator)
     invoice.currency_locale = 'en_UK.UTF-8'
     invoice.currency = u'\u00a3'
-    invoice.add_item(Item(Quantity, Price, Description))
+
+    while i < itemQuantity:
+        print('Please enter the details for Item ' + str(x))
+        Quantity = raw_input("Please enter a quantity of good provided: ")
+        Price = raw_input("Please enter the total price: ")
+        Description = raw_input("Please enter a description: ")
+        invoice.add_item(Item(Quantity, Price, Description))
+        x += 1
+        i += 1
 
     pdf = SimpleInvoice(invoice)
-
     invoiceName = "Invoice001.pdf"
-
     pdf.gen(invoiceName, generate_qr_code=True) 
 
 
