@@ -8,8 +8,9 @@ os.environ["INVOICE_LANG"] = "en"
 
 accNumber = '00000000'
 sortCode = '000000'
-client = Client('Client Company')
-provider = Provider('Totness Web Services', bank_account=accNumber, bank_code=sortCode)
+client = Client('The Inside Story')
+provider = Provider('Totness Web Services, 4 Broadway, Guiseley, Leeds', 
+    bank_account=accNumber, bank_code=sortCode)
 creator = Creator('')
 # address = Address('Acme Solutions', address = 'The Hague, Netherlands')
 
@@ -20,11 +21,14 @@ Description = raw_input("Please enter a description: ")
 def GenerateInvoice():
     invoice = Invoice(client, provider, creator)
     invoice.currency_locale = 'en_UK.UTF-8'
-    invoice.currency = u'K\u010d'
+    invoice.currency = u'\u00a3'
     invoice.add_item(Item(Quantity, Price, Description))
 
     pdf = SimpleInvoice(invoice)
-    pdf.gen("invoice.pdf", generate_qr_code=True) 
+
+    invoiceName = "Invoice001.pdf"
+
+    pdf.gen(invoiceName, generate_qr_code=True) 
 
 
 GenerateInvoice()
